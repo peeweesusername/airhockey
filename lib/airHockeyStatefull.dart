@@ -1,35 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flame/game.dart';
 import 'package:air_hockey/airhockeygame.dart';
-
-Widget _menuBuilder(BuildContext buildContext, AirHockeyGame game) {
-  return Center(
-    child: Container(
-      width: 200,
-      height: 100,
-      color: Colors.black,
-      child:  Center(
-        child: Column (
-          children: [
-            GestureDetector(
-                onTap: (){
-                  game.overlays.remove('Menu');
-                  game.resumeEngine();
-                },
-                child: const Text('Keep Playing', style: TextStyle(fontSize: 24, color: Colors.white))),
-            const Text('', style: TextStyle(fontSize: 24)),
-            GestureDetector(
-                onTap: (){
-                  SystemNavigator.pop();
-                },
-                child: const Text('Exit Game', style: TextStyle(fontSize: 24, color: Colors.white))),
-          ],
-        ),
-      ),
-    ),
-  );
-}
+import 'package:air_hockey/gamemenus.dart';
 
 class AirHockeyGameStatefull extends StatefulWidget {
   const AirHockeyGameStatefull({super.key});
@@ -68,7 +40,7 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
             child: GameWidget<AirHockeyGame>(
               game: myAirHockeyGame,
               overlayBuilderMap: const
-                {'Menu': _menuBuilder,},
+                {'PauseMenu': pauseMenuBuilder,},
             ),
           ),
           ],
