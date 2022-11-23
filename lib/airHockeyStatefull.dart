@@ -31,26 +31,32 @@ Widget _menuBuilder(BuildContext buildContext, AirHockeyGame game) {
   );
 }
 
-/*
-Widget airHockeyStatefull() {
-  return GameWidget<AirHockeyGame>(
-    game: AirHockeyGame()..paused = false,
-    overlayBuilderMap: const {
-      'Menu': _menuBuilder,
-    },
-  );
-}
-*/
-
-class airHockeyStatefull extends StatefulWidget {
-  const airHockeyStatefull({super.key});
+class AirHockeyGameStatefull extends StatefulWidget {
+  const AirHockeyGameStatefull({super.key});
   @override
-  State<airHockeyStatefull> createState() => _airHockeyStatefull();
+  State<AirHockeyGameStatefull> createState() => _AirHockeyGameStatefull();
 }
 
-class _airHockeyStatefull extends State<airHockeyStatefull> {
+class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
+  late AirHockeyGame myAirHockeyGame;
+  int _player1Score = 0;
+  int _player2Score = 0;
+
+  void Scores(int player) {
+    setState(() {
+      if (player == 1) {
+        _player1Score++;
+      }
+      else {
+        _player2Score++;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    myAirHockeyGame = AirHockeyGame();
+    myAirHockeyGame.paused = false;
     double x = MediaQuery.of(context).size.width.roundToDouble();
     double y = MediaQuery.of(context).size.height.roundToDouble();
     return Scaffold(
@@ -60,11 +66,11 @@ class _airHockeyStatefull extends State<airHockeyStatefull> {
           children: <Widget>[Container(
             constraints: BoxConstraints.expand(width: x, height: y),
             child: GameWidget<AirHockeyGame>(
-              game: AirHockeyGame()..paused = false,
+              game: myAirHockeyGame,
               overlayBuilderMap: const
                 {'Menu': _menuBuilder,},
             ),
-          )
+          ),
           ],
         ),
       ),

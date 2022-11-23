@@ -15,14 +15,16 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
   AirHockeyGame() : super(gravity: Vector2(0, 0));
 
   late Body gameBody;
+  late Vector2 gameSize;
   late PlayerPaddle player1;
   late PlayerPaddle player2;
+  late ThePuck thePuck;
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
     camera.zoom = camera.zoom * myZoomFactor;
-    Vector2 gameSize = screenToWorld(camera.viewport.effectiveSize);
+    gameSize = screenToWorld(camera.viewport.effectiveSize);
     gameBody = world.createBody(BodyDef());
     player1 = PlayerPaddle(
         position: Vector2(gameSize.x / 2, gameSize.y - (2 * paddleRadius)),
@@ -35,21 +37,25 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
         linearVelocity: Vector2.zero(),
         playernumber: 2);
     add(AirRink(gameSize: gameSize));
-    add(ThePuck(position: Vector2(gameSize.x / 2, gameSize.y / 2),
+    thePuck = ThePuck(position: Vector2(gameSize.x / 2, gameSize.y / 2),
         radius: puckRadius,
-        linearVelocity: Vector2.zero()));
+        linearVelocity: Vector2.zero());
+    add(thePuck);
     add(Goal(gameSize: gameSize, playernumber: 1));
     add(Goal(gameSize: gameSize, playernumber: 2));
     add(player1);
     add(player2);
   }
 
-  void removePuck(ThePuck thePuck) {
+  void removePuck() {
     remove(thePuck);
   }
 
-  void addPuck(Vector2 position, Vector2 velocity, double radius) {
-    add(ThePuck(position: position, radius: radius, linearVelocity: velocity));
+  void puckDrop() {
+    thePuck = ThePuck(position: Vector2(gameSize.x / 2, gameSize.y / 2),
+        radius: puckRadius,
+        linearVelocity: Vector2.zero());
+    add(thePuck);
   }
 
   @override
