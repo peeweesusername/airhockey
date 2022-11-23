@@ -37,14 +37,11 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
         linearVelocity: Vector2.zero(),
         playernumber: 2);
     add(AirRink(gameSize: gameSize));
-    thePuck = ThePuck(position: Vector2(gameSize.x / 2, gameSize.y / 2),
-        radius: puckRadius,
-        linearVelocity: Vector2.zero());
-    add(thePuck);
     add(Goal(gameSize: gameSize, playernumber: 1));
     add(Goal(gameSize: gameSize, playernumber: 2));
     add(player1);
     add(player2);
+    overlays.add('FaceoffMenu');
   }
 
   void removePuck() {
@@ -52,10 +49,10 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
   }
 
   void puckDrop() {
-    thePuck = ThePuck(position: Vector2(gameSize.x / 2, gameSize.y / 2),
-        radius: puckRadius,
-        linearVelocity: Vector2.zero());
+    thePuck = ThePuck(position: Vector2(gameSize.x / 100, gameSize.y / 2),
+        radius: puckRadius);
     add(thePuck);
+    //thePuck.body.applyLinearImpulse(Vector2(1, 0));
   }
 
   @override

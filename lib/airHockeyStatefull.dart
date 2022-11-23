@@ -40,7 +40,7 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
             child: GameWidget<AirHockeyGame>(
               game: myAirHockeyGame,
               overlayBuilderMap: const
-                {'PauseMenu': pauseMenuBuilder,},
+                {'PauseMenu': pauseMenuBuilder, 'FaceoffMenu': faceoffMenuBuilder},
             ),
           ),
           ],
