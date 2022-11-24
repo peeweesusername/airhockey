@@ -48,11 +48,11 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
     remove(thePuck);
   }
 
-  void puckDrop() {
+  Future<void> puckDrop() async {
     thePuck = ThePuck(position: Vector2(gameSize.x / 100, gameSize.y / 2),
         radius: puckRadius);
-    add(thePuck);
-    //thePuck.body.applyLinearImpulse(Vector2(1, 0));
+    await add(thePuck);
+    thePuck.body.applyLinearImpulse(Vector2(0.01, 0));
   }
 
   @override
