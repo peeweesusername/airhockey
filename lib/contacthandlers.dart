@@ -52,6 +52,9 @@ class goalContactCallback extends ContactCallbacks {
   @override
   beginContact(Object other, Contact contact)  {
     super.beginContact(other, contact);
+    if (other is puckContactCallback) {
+      parentGame.PlayreScored(theGoal.playernumber);
+    }
   }
 
   @override

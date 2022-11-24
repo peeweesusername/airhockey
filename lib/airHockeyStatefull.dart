@@ -14,7 +14,8 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
   int _player1Score = 0;
   int _player2Score = 0;
 
-  void Scores(int player) {
+  void PlayreScored(int player) {
+    print("player # " + player.toString() + " scored");
     setState(() {
       if (player == 1) {
         _player1Score++;
@@ -23,12 +24,15 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
         _player2Score++;
       }
     });
+    print("_player1Score: " + _player1Score.toString());
+    print("_player2Score: " + _player2Score.toString());
   }
 
   @override
   Widget build(BuildContext context) {
     myAirHockeyGame = AirHockeyGame();
     myAirHockeyGame.paused = false;
+    myAirHockeyGame.PlayreScored = PlayreScored;
     double x = MediaQuery.of(context).size.width.roundToDouble();
     double y = MediaQuery.of(context).size.height.roundToDouble();
     return Scaffold(

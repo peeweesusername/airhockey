@@ -19,6 +19,7 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
   late PlayerPaddle player1;
   late PlayerPaddle player2;
   late ThePuck thePuck;
+  late Function(int) PlayreScored;
 
   @override
   Future<void> onLoad() async {
