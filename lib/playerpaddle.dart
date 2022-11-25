@@ -45,7 +45,6 @@ class PlayerPaddle extends BodyComponent with Draggable {
   }
 
   void setPaddlePosition(Vector2 position) {
-
     final mouseJointDef = MouseJointDef()
       ..maxForce = body.mass * 1000
       ..frequencyHz = 10

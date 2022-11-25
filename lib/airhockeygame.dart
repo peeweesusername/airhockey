@@ -52,9 +52,13 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
   }
 
   void restartGame() {
-    //TODO: reset paddles to home position
     redscore = 0;
     bluescore = 0;
+    //TODO: reset paddles to home position
+    //This causes run time error
+    //'package:forge2d/src/dynamics/world.dart': Failed assertion: line 160 pos 12: '!isLocked': is not true.
+    //redplayer.setPaddlePosition(Vector2(gameSize.x / 2, gameSize.y - (2 * paddleRadius)));
+    //blueplayer.setPaddlePosition(Vector2(gameSize.x / 2, (2 * paddleRadius)));
     overlays.add('FaceoffMenu');
   }
 
@@ -79,6 +83,10 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
 
   void faceOff() {
     //TODO: reset paddles to home position
+    //This causes run time error
+    //'package:forge2d/src/dynamics/world.dart': Failed assertion: line 160 pos 12: '!isLocked': is not true.
+    //redplayer.setPaddlePosition(Vector2(gameSize.x / 2, gameSize.y - (2 * paddleRadius)));
+    //blueplayer.setPaddlePosition(Vector2(gameSize.x / 2, (2 * paddleRadius)));
     overlays.add('FaceoffMenu');
   }
 
