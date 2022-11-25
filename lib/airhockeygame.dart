@@ -62,7 +62,10 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
 
   @override
   void onTap() {
-    if (overlays.isActive('PauseMenu')) {
+    if (overlays.isActive('FaceoffMenu')) {
+      return;
+    }
+    else if (overlays.isActive('PauseMenu')) {
       overlays.remove('PauseMenu');
       resumeEngine();
     } else {
