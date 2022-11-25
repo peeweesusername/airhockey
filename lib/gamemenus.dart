@@ -7,7 +7,7 @@ Widget pauseMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
     child: Container(
       width: 200,
       height: 100,
-      color: Colors.black,
+      color: Colors.transparent,
       child:  Center(
         child: Column (
           children: [
@@ -35,7 +35,7 @@ Widget faceoffMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
     child: Container(
       width: 200,
       height: 100,
-      color: Colors.black,
+      color: Colors.transparent,
       child:  Center(
         child: Column (
           children: [
