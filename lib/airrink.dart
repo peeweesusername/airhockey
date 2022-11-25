@@ -11,7 +11,7 @@ class AirRink extends BodyComponent {
     final indices = <Vector2>[Vector2(0,0), Vector2(0, gameSize.y), Vector2(gameSize.x, gameSize.y), Vector2(gameSize.x,0), Vector2(0,0) ];
     final shape = ChainShape();
     shape.createChain(indices);
-    final fixtureDef = FixtureDef(shape, density: 1.0, restitution: 0.9, friction: 0.0);
+    final fixtureDef = FixtureDef(shape, density: 1.0, restitution: 0.7, friction: 0.2);
     final bodyDef = BodyDef(userData: this, position: Vector2.zero());
     return world.createBody(bodyDef)..createFixture(fixtureDef);
   }
