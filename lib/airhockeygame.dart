@@ -14,10 +14,12 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
   //Needed to eliminate gravity vector
   AirHockeyGame() : super(gravity: Vector2(0, 0));
 
+  int redscore = 0;
+  int bluescore = 0;
   late Body gameBody;
   late Vector2 gameSize;
-  late PlayerPaddle player1;
-  late PlayerPaddle player2;
+  late PlayerPaddle redplayer;
+  late PlayerPaddle blueplayer;
   late ThePuck thePuck;
   late Function(PlayerColor) PlayreScored;
 
@@ -27,12 +29,12 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
     camera.zoom = camera.zoom * myZoomFactor;
     gameSize = screenToWorld(camera.viewport.effectiveSize);
     gameBody = world.createBody(BodyDef());
-    player1 = PlayerPaddle(
+    redplayer = PlayerPaddle(
         position: Vector2(gameSize.x / 2, gameSize.y - (2 * paddleRadius)),
         radius: paddleRadius,
         linearVelocity: Vector2.zero(),
         whichplayer: PlayerColor.redPlayer);
-    player2 = PlayerPaddle(
+    blueplayer = PlayerPaddle(
         position: Vector2(gameSize.x / 2, (2 * paddleRadius)),
         radius: paddleRadius,
         linearVelocity: Vector2.zero(),
@@ -40,8 +42,8 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
     add(AirRink(gameSize: gameSize));
     add(Goal(gameSize: gameSize, whichplayer: PlayerColor.redPlayer));
     add(Goal(gameSize: gameSize, whichplayer: PlayerColor.bluePlayer));
-    add(player1);
-    add(player2);
+    add(redplayer);
+    add(blueplayer);
     overlays.add('FaceoffMenu');
   }
 
@@ -49,7 +51,10 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
     remove(thePuck);
   }
 
-  void faceOff() {
+  void faceOff(int redscore, int bluescore) {
+    this.redscore = redscore;
+    this.bluescore = bluescore;
+    //TODO: reset paddles to home position
     overlays.add('FaceoffMenu');
   }
 

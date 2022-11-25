@@ -16,7 +16,6 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
   late  int _playerBlueScore;
 
   void PlayreScored(PlayerColor whichplayer) {
-    print("player " + whichplayer.toString() + " scored");
     setState(() {
       if (whichplayer == PlayerColor.redPlayer) {
         _playerRedScore++;
@@ -25,10 +24,8 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
         _playerBlueScore++;
       }
       myAirHockeyGame.removePuck();
-      myAirHockeyGame.faceOff();
+      myAirHockeyGame.faceOff(_playerRedScore, _playerBlueScore);
     });
-    print("Red Score: " + _playerRedScore.toString());
-    print("Blue Score: " + _playerBlueScore.toString());
   }
 
   @override

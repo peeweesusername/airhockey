@@ -34,11 +34,15 @@ Widget faceoffMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
   return Center(
     child: Container(
       width: 200,
-      height: 100,
+      height: 200,
       color: Colors.transparent,
       child:  Center(
         child: Column (
           children: [
+            Text('Red Team: '  + game.redscore.toString(), style: TextStyle(fontSize: 24, color: Colors.white)),
+            const Text('', style: TextStyle(fontSize: 12)),
+            Text('Blue Team: '  + game.bluescore.toString(), style: TextStyle(fontSize: 24, color: Colors.white)),
+            const Text('', style: TextStyle(fontSize: 24)),
             GestureDetector(
                 onTap: (){
                   game.overlays.remove('FaceoffMenu');
@@ -46,7 +50,7 @@ Widget faceoffMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
                   game.puckDrop();
                 },
                 child: const Text('Puck Drop', style: TextStyle(fontSize: 24, color: Colors.white))),
-            const Text('', style: TextStyle(fontSize: 24)),
+            const Text('', style: TextStyle(fontSize: 12)),
             GestureDetector(
                 onTap: (){
                   SystemNavigator.pop();
