@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:air_hockey/contacthandlers.dart';
 import 'package:air_hockey/airhockeygame.dart';
+import 'package:air_hockey/playerpaddle.dart';
 
 class Goal extends BodyComponent {
   final Vector2 gameSize;
-  int playernumber;
+  PlayerColor whichplayer;
 
   late AirHockeyGame parentGame = findParent() as AirHockeyGame;
 
-  Goal({required this.gameSize, required this.playernumber});
+  Goal({required this.gameSize, required this.whichplayer});
 
   @override
   Body createBody() {
     Vector2 position;
     setColor(Colors.red);
-    if (playernumber == 1)
+    if (whichplayer == PlayerColor.redPlayer)
     {
       //TODO: use the scale factor here and place slighty beyond rink wall
       position = Vector2(gameSize.x/2, gameSize.y+0.01);

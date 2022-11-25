@@ -19,7 +19,7 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
   late PlayerPaddle player1;
   late PlayerPaddle player2;
   late ThePuck thePuck;
-  late Function(int) PlayreScored;
+  late Function(PlayerColor) PlayreScored;
 
   @override
   Future<void> onLoad() async {
@@ -31,15 +31,15 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
         position: Vector2(gameSize.x / 2, gameSize.y - (2 * paddleRadius)),
         radius: paddleRadius,
         linearVelocity: Vector2.zero(),
-        playernumber: 1);
+        whichplayer: PlayerColor.redPlayer);
     player2 = PlayerPaddle(
         position: Vector2(gameSize.x / 2, (2 * paddleRadius)),
         radius: paddleRadius,
         linearVelocity: Vector2.zero(),
-        playernumber: 2);
+        whichplayer: PlayerColor.bluePlayer);
     add(AirRink(gameSize: gameSize));
-    add(Goal(gameSize: gameSize, playernumber: 1));
-    add(Goal(gameSize: gameSize, playernumber: 2));
+    add(Goal(gameSize: gameSize, whichplayer: PlayerColor.redPlayer));
+    add(Goal(gameSize: gameSize, whichplayer: PlayerColor.bluePlayer));
     add(player1);
     add(player2);
     overlays.add('FaceoffMenu');

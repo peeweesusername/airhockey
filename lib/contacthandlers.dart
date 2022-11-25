@@ -53,7 +53,12 @@ class goalContactCallback extends ContactCallbacks {
   beginContact(Object other, Contact contact)  {
     super.beginContact(other, contact);
     if (other is puckContactCallback) {
-      parentGame.PlayreScored(theGoal.playernumber);
+      if (theGoal.whichplayer == PlayerColor.redPlayer) {
+        parentGame.PlayreScored(PlayerColor.bluePlayer);
+      }
+      else {
+        parentGame.PlayreScored(PlayerColor.redPlayer);
+      }
     }
   }
 

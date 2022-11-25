@@ -5,20 +5,25 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:air_hockey/contacthandlers.dart';
 import 'package:air_hockey/airhockeygame.dart';
 
+enum PlayerColor {
+  redPlayer,
+  bluePlayer
+}
+
 class PlayerPaddle extends BodyComponent with Draggable {
   Vector2 position;
   double radius;
   Vector2 linearVelocity;
-  int playernumber;
+  PlayerColor whichplayer;
 
   MouseJoint? mouseJoint;
   late AirHockeyGame parentGame = findParent() as AirHockeyGame;
 
-  PlayerPaddle({required this.position, required this.radius, required this.linearVelocity, required this.playernumber});
+  PlayerPaddle({required this.position, required this.radius, required this.linearVelocity, required this.whichplayer});
 
   @override
   Body createBody() {
-    if (playernumber == 1)
+    if (whichplayer == PlayerColor.redPlayer)
     {
       setColor(Colors.red);
     }

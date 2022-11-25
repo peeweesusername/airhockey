@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'package:air_hockey/airhockeygame.dart';
 import 'package:air_hockey/gamemenus.dart';
+import 'package:air_hockey/playerpaddle.dart';
 
 class AirHockeyGameStatefull extends StatefulWidget {
   const AirHockeyGameStatefull({super.key});
@@ -11,30 +12,30 @@ class AirHockeyGameStatefull extends StatefulWidget {
 
 class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
   late AirHockeyGame myAirHockeyGame;
-  late  int _player1Score;
-  late  int _player2Score;
+  late  int _playerRedScore;
+  late  int _playerBlueScore;
 
-  void PlayreScored(int player) {
-    print("player # " + player.toString() + " scored");
+  void PlayreScored(PlayerColor whichplayer) {
+    print("player " + whichplayer.toString() + " scored");
     setState(() {
-      if (player == 1) {
-        _player1Score++;
+      if (whichplayer == PlayerColor.redPlayer) {
+        _playerRedScore++;
       }
       else {
-        _player2Score++;
+        _playerBlueScore++;
       }
       myAirHockeyGame.removePuck();
       myAirHockeyGame.faceOff();
     });
-    print("_player1Score: " + _player1Score.toString());
-    print("_player2Score: " + _player2Score.toString());
+    print("Red Score: " + _playerRedScore.toString());
+    print("Blue Score: " + _playerBlueScore.toString());
   }
 
   @override
   void initState() {
     super.initState();
-    _player1Score = 0;
-    _player2Score = 0;
+    _playerRedScore = 0;
+    _playerBlueScore = 0;
     myAirHockeyGame = AirHockeyGame();
     myAirHockeyGame.paused = false;
     myAirHockeyGame.PlayreScored = PlayreScored;
