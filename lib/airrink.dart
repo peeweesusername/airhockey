@@ -7,6 +7,7 @@ class AirRink extends BodyComponent {
 
   @override
   Body createBody() {
+    //TODO: create gap at each end to fit goal
     final indices = <Vector2>[Vector2(0,0), Vector2(0, gameSize.y), Vector2(gameSize.x, gameSize.y), Vector2(gameSize.x,0), Vector2(0,0) ];
     final shape = ChainShape();
     shape.createChain(indices);

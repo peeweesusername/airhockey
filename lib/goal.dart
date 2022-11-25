@@ -17,12 +17,12 @@ class Goal extends BodyComponent {
     setColor(Colors.red);
     if (playernumber == 1)
     {
-      //TODO: use the scale factor here
+      //TODO: use the scale factor here and place slighty beyond rink wall
       position = Vector2(gameSize.x/2, gameSize.y+0.01);
     }
     else
     {
-      //TODO: use the scale factor here
+      //TODO: use the scale factor here and place slighty beyond rink wall
       position = Vector2(gameSize.x/2, -0.01);
     }
     final shape = PolygonShape ();
