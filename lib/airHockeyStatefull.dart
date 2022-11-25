@@ -11,8 +11,8 @@ class AirHockeyGameStatefull extends StatefulWidget {
 
 class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
   late AirHockeyGame myAirHockeyGame;
-  int _player1Score = 0;
-  int _player2Score = 0;
+  late  int _player1Score;
+  late  int _player2Score;
 
   void PlayreScored(int player) {
     print("player # " + player.toString() + " scored");
@@ -23,16 +23,25 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
       else {
         _player2Score++;
       }
+      myAirHockeyGame.removePuck();
+      myAirHockeyGame.faceOff();
     });
     print("_player1Score: " + _player1Score.toString());
     print("_player2Score: " + _player2Score.toString());
   }
 
   @override
-  Widget build(BuildContext context) {
+  void initState() {
+    super.initState();
+    _player1Score = 0;
+    _player2Score = 0;
     myAirHockeyGame = AirHockeyGame();
     myAirHockeyGame.paused = false;
     myAirHockeyGame.PlayreScored = PlayreScored;
+  }
+
+  @override
+  Widget build(BuildContext context) {
     double x = MediaQuery.of(context).size.width.roundToDouble();
     double y = MediaQuery.of(context).size.height.roundToDouble();
     return Scaffold(

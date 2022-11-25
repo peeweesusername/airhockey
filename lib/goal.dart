@@ -17,13 +17,16 @@ class Goal extends BodyComponent {
     setColor(Colors.red);
     if (playernumber == 1)
     {
+      //TODO: use the scale factor here
       position = Vector2(gameSize.x/2, gameSize.y+0.01);
     }
     else
     {
+      //TODO: use the scale factor here
       position = Vector2(gameSize.x/2, -0.01);
     }
     final shape = PolygonShape ();
+    //TODO: use the scale factor here
     shape.setAsBoxXY(0.4, 0.02);
     final mycontact = goalContactCallback(theGoal: this);
     final fixtureDef = FixtureDef(shape, density: 1.0, restitution: 0.0, friction: 1.0);
