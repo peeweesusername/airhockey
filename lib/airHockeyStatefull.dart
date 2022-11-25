@@ -24,8 +24,16 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
         _playerBlueScore++;
       }
       myAirHockeyGame.removePuck();
-      myAirHockeyGame.faceOff(_playerRedScore, _playerBlueScore);
+      myAirHockeyGame.updateScore(_playerRedScore, _playerBlueScore);
     });
+  }
+
+  void NewGame() {
+    setState(() {
+      _playerRedScore = 0;
+      _playerBlueScore = 0;
+    });
+    myAirHockeyGame.restartGame();
   }
 
   @override
@@ -36,6 +44,7 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
     myAirHockeyGame = AirHockeyGame();
     myAirHockeyGame.paused = false;
     myAirHockeyGame.PlayreScored = PlayreScored;
+    myAirHockeyGame.NewGame = NewGame;
   }
 
   @override
@@ -50,8 +59,11 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
             constraints: BoxConstraints.expand(width: x, height: y),
             child: GameWidget<AirHockeyGame>(
               game: myAirHockeyGame,
-              overlayBuilderMap: const
-                {'PauseMenu': pauseMenuBuilder, 'FaceoffMenu': faceoffMenuBuilder},
+              overlayBuilderMap: const{
+                'PauseMenu': pauseMenuBuilder,
+                'FaceoffMenu': faceoffMenuBuilder,
+                'WinnerMenu': winnerMenuBuilder,
+              },
             ),
           ),
           ],

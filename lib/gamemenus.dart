@@ -1,3 +1,4 @@
+import 'package:air_hockey/playerpaddle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:air_hockey/airhockeygame.dart';
@@ -50,6 +51,44 @@ Widget faceoffMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
                   game.puckDrop();
                 },
                 child: const Text('Puck Drop', style: TextStyle(fontSize: 24, color: Colors.white))),
+            const Text('', style: TextStyle(fontSize: 12)),
+            GestureDetector(
+                onTap: (){
+                  SystemNavigator.pop();
+                },
+                child: const Text('Exit Game', style: TextStyle(fontSize: 24, color: Colors.white))),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+Widget winnerMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
+  Text  winnerText;
+  if (game.theWinner == PlayerColor.redPlayer) {
+    winnerText =  Text('Team Red Wins!', style: TextStyle(fontSize: 24, color: Colors.white));
+  }
+  else {
+    winnerText = Text('Team Blue Wins!', style: TextStyle(fontSize: 24, color: Colors.white));
+  }
+  return Center(
+    child: Container(
+      width: 200,
+      height: 200,
+      color: Colors.transparent,
+      child:  Center(
+        child: Column (
+          children: [
+            winnerText,
+            const Text('', style: TextStyle(fontSize: 24)),
+            GestureDetector(
+                onTap: (){
+                  game.overlays.remove('WinnerMenu');
+                  game.resumeEngine();
+                  game.NewGame();
+                },
+                child: const Text('New Game', style: TextStyle(fontSize: 24, color: Colors.white))),
             const Text('', style: TextStyle(fontSize: 12)),
             GestureDetector(
                 onTap: (){

@@ -7,7 +7,8 @@ import 'package:air_hockey/airhockeygame.dart';
 
 enum PlayerColor {
   redPlayer,
-  bluePlayer
+  bluePlayer,
+  noPlayer
 }
 
 class PlayerPaddle extends BodyComponent with Draggable {

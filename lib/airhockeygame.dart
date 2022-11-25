@@ -10,18 +10,22 @@ const double myZoomFactor = 15;
 const double puckRadius = 1.5/myZoomFactor;
 const double paddleRadius = 3.5/myZoomFactor;
 
+const int winningScore = 2;
+
 class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
   //Needed to eliminate gravity vector
   AirHockeyGame() : super(gravity: Vector2(0, 0));
 
   int redscore = 0;
   int bluescore = 0;
+  PlayerColor theWinner = PlayerColor.noPlayer;
   late Body gameBody;
   late Vector2 gameSize;
   late PlayerPaddle redplayer;
   late PlayerPaddle blueplayer;
   late ThePuck thePuck;
   late Function(PlayerColor) PlayreScored;
+  late Function() NewGame;
 
   @override
   Future<void> onLoad() async {
@@ -47,15 +51,40 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
     overlays.add('FaceoffMenu');
   }
 
+  void restartGame() {
+    //TODO: reset paddles to home position
+    redscore = 0;
+    bluescore = 0;
+    overlays.add('FaceoffMenu');
+  }
+
   void removePuck() {
     remove(thePuck);
   }
 
-  void faceOff(int redscore, int bluescore) {
+  void updateScore(int redscore, int bluescore) {
     this.redscore = redscore;
     this.bluescore = bluescore;
+
+    if (this.redscore == winningScore) {
+      winner(PlayerColor.redPlayer);
+    }
+    else if (this.bluescore == winningScore) {
+      winner(PlayerColor.bluePlayer);
+    }
+    else {
+      faceOff();
+    }
+  }
+
+  void faceOff() {
     //TODO: reset paddles to home position
     overlays.add('FaceoffMenu');
+  }
+
+  void winner(PlayerColor winner) {
+    theWinner = winner;
+    overlays.add('WinnerMenu');
   }
 
   Future<void> puckDrop() async {
@@ -67,7 +96,10 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
 
   @override
   void onTap() {
-    if (overlays.isActive('FaceoffMenu')) {
+    if (overlays.isActive('WinnerMenu')) {
+      return;
+    }
+    else if (overlays.isActive('FaceoffMenu')) {
       return;
     }
     else if (overlays.isActive('PauseMenu')) {
