@@ -44,8 +44,7 @@ class PlayerPaddle extends BodyComponent with Draggable {
     return false;
   }
 
-  @override
-  bool onDragUpdate(DragUpdateInfo info) {
+  void setPaddlePosition(Vector2 position) {
 
     final mouseJointDef = MouseJointDef()
       ..maxForce = body.mass * 1000
@@ -61,8 +60,12 @@ class PlayerPaddle extends BodyComponent with Draggable {
       world.createJoint(mouseJoint!);
     }
 
-    mouseJoint?.setTarget(info.eventPosition.game);
+    mouseJoint?.setTarget(position);
+  }
 
+  @override
+  bool onDragUpdate(DragUpdateInfo info) {
+    setPaddlePosition(info.eventPosition.game);
     return false;
   }
 
