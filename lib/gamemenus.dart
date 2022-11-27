@@ -6,8 +6,8 @@ import 'package:air_hockey/airhockeygame.dart';
 Widget pauseMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
   return Center(
     child: Container(
-      width: 200,
-      height: 100,
+      width: 250,
+      height: 250,
       color: Colors.transparent,
       child:  Center(
         child: Column (
@@ -34,8 +34,8 @@ Widget pauseMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
 Widget faceoffMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
   return Center(
     child: Container(
-      width: 200,
-      height: 200,
+      width: 250,
+      height: 250,
       color: Colors.transparent,
       child:  Center(
         child: Column (
@@ -74,8 +74,8 @@ Widget winnerMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
   }
   return Center(
     child: Container(
-      width: 200,
-      height: 200,
+      width: 250,
+      height: 250,
       color: Colors.transparent,
       child:  Center(
         child: Column (
