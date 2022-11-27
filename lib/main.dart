@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:air_hockey/airHockeyStatefull.dart';
 
 //TODO:
-//1) Snap paddles to home position for every face off
 //2) Move goals to behind rink wall and put gap in rink all for goals
 //3) Colors: ice, blue line, center line, goal-zone, puck, text
 //4) Sounds: puck drop, goal and winner

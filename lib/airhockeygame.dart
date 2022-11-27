@@ -1,12 +1,12 @@
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
+import 'package:air_hockey/globals.dart';
 import 'package:air_hockey/goal.dart';
 import 'package:air_hockey/thepuck.dart';
 import 'package:air_hockey/airrink.dart';
 import 'package:air_hockey/playerpaddle.dart';
 
-const double myZoomFactor = 15;
 const double puckRadius = 1.5/myZoomFactor;
 const double paddleRadius = 3.5/myZoomFactor;
 
