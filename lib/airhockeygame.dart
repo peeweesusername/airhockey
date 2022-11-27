@@ -10,7 +10,7 @@ const double myZoomFactor = 15;
 const double puckRadius = 1.5/myZoomFactor;
 const double paddleRadius = 3.5/myZoomFactor;
 
-const int winningScore = 2;
+const int winningScore = 3;
 
 class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
   //Needed to eliminate gravity vector
@@ -23,6 +23,8 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
   late Vector2 gameSize;
   late PlayerPaddle redplayer;
   late PlayerPaddle blueplayer;
+  Vector2 redHomePosition = Vector2.zero();
+  Vector2 blueHomePosition = Vector2.zero();
   late ThePuck thePuck;
   late Function(PlayerColor) PlayreScored;
   late Function() NewGame;
@@ -33,13 +35,15 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
     camera.zoom = camera.zoom * myZoomFactor;
     gameSize = screenToWorld(camera.viewport.effectiveSize);
     gameBody = world.createBody(BodyDef());
+    redHomePosition = Vector2(gameSize.x / 2, gameSize.y - (2 * paddleRadius));
     redplayer = PlayerPaddle(
-        position: Vector2(gameSize.x / 2, gameSize.y - (2 * paddleRadius)),
+        position: redHomePosition,
         radius: paddleRadius,
         linearVelocity: Vector2.zero(),
         whichplayer: PlayerColor.redPlayer);
+    blueHomePosition = Vector2(gameSize.x / 2, (2 * paddleRadius));
     blueplayer = PlayerPaddle(
-        position: Vector2(gameSize.x / 2, (2 * paddleRadius)),
+        position: blueHomePosition,
         radius: paddleRadius,
         linearVelocity: Vector2.zero(),
         whichplayer: PlayerColor.bluePlayer);
@@ -51,14 +55,17 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
     overlays.add('FaceoffMenu');
   }
 
+  void paddlesReset() {
+    redplayer.body.clearForces();
+    blueplayer.body.clearForces();
+    redplayer.setPaddlePosition(redHomePosition);
+    blueplayer.setPaddlePosition(blueHomePosition);
+  }
+
   void restartGame() {
     redscore = 0;
     bluescore = 0;
-    //TODO: reset paddles to home position
-    //This causes run time error
-    //'package:forge2d/src/dynamics/world.dart': Failed assertion: line 160 pos 12: '!isLocked': is not true.
-    //redplayer.setPaddlePosition(Vector2(gameSize.x / 2, gameSize.y - (2 * paddleRadius)));
-    //blueplayer.setPaddlePosition(Vector2(gameSize.x / 2, (2 * paddleRadius)));
+    paddlesReset();
     overlays.add('FaceoffMenu');
   }
 
@@ -82,11 +89,7 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
   }
 
   void faceOff() {
-    //TODO: reset paddles to home position
-    //This causes run time error
-    //'package:forge2d/src/dynamics/world.dart': Failed assertion: line 160 pos 12: '!isLocked': is not true.
-    //redplayer.setPaddlePosition(Vector2(gameSize.x / 2, gameSize.y - (2 * paddleRadius)));
-    //blueplayer.setPaddlePosition(Vector2(gameSize.x / 2, (2 * paddleRadius)));
+    paddlesReset();
     overlays.add('FaceoffMenu');
   }
 

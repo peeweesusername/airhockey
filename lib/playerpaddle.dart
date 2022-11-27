@@ -32,6 +32,7 @@ class PlayerPaddle extends BodyComponent with Draggable {
     {
       setColor(Colors.blue);
     }
+
     final shape = CircleShape()..radius = radius;
     final mycontact = paddleContactCallback(thePaddle: this);
     final fixtureDef = FixtureDef(shape, density: 1.0, restitution: 0.0, friction: 1.0);
@@ -73,8 +74,6 @@ class PlayerPaddle extends BodyComponent with Draggable {
     if (mouseJoint == null) {
       return true;
     }
-    world.destroyJoint(mouseJoint!);
-    mouseJoint = null;
     body.linearVelocity = body.linearVelocity/20;
     return false;
   }
