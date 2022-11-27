@@ -26,7 +26,7 @@ class AirHockeyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  const MaterialApp(
-      home: AirHockeyGameStatefull()
+      home: AirHockeyGameStatefull(),
     );
   }
 }
