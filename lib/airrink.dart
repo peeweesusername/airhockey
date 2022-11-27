@@ -1,14 +1,37 @@
 import 'package:flame_forge2d/flame_forge2d.dart';
+import 'package:air_hockey/globals.dart';
 
-class AirRink extends BodyComponent {
+class AirRinkLeftSide extends BodyComponent {
   final Vector2 gameSize;
 
-  AirRink({required this.gameSize});
+  AirRinkLeftSide({required this.gameSize});
 
   @override
   Body createBody() {
-    //TODO: create gap at each end to fit goal
-    final indices = <Vector2>[Vector2(0,0), Vector2(0, gameSize.y), Vector2(gameSize.x, gameSize.y), Vector2(gameSize.x,0), Vector2(0,0) ];
+    //Allow for gap in rink wall for goal
+    final indices = <Vector2>[Vector2((gameSize.x-goalWidth)/2,0),
+      Vector2(0,0), Vector2(0, gameSize.y),
+      Vector2((gameSize.x-goalWidth)/2, gameSize.y)];
+    final shape = ChainShape();
+    shape.createChain(indices);
+    final fixtureDef = FixtureDef(shape, density: 1.0, restitution: 0.7, friction: 0.2);
+    final bodyDef = BodyDef(userData: this, position: Vector2.zero());
+    return world.createBody(bodyDef)..createFixture(fixtureDef);
+  }
+}
+
+class AirRinkRightSide extends BodyComponent {
+  final Vector2 gameSize;
+
+  AirRinkRightSide({required this.gameSize});
+
+  @override
+  Body createBody() {
+    //Allow for gap in rink wall for goal
+    final indices = <Vector2>[Vector2((gameSize.x+goalWidth)/2,0),
+      Vector2(gameSize.x,0),
+      Vector2(gameSize.x, gameSize.y),
+      Vector2((gameSize.x+goalWidth)/2, gameSize.y)];
     final shape = ChainShape();
     shape.createChain(indices);
     final fixtureDef = FixtureDef(shape, density: 1.0, restitution: 0.7, friction: 0.2);

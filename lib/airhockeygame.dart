@@ -47,7 +47,8 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
         radius: paddleRadius,
         linearVelocity: Vector2.zero(),
         whichplayer: PlayerColor.bluePlayer);
-    add(AirRink(gameSize: gameSize));
+    add(AirRinkLeftSide(gameSize: gameSize));
+    add(AirRinkRightSide(gameSize: gameSize));
     add(Goal(gameSize: gameSize, whichplayer: PlayerColor.redPlayer));
     add(Goal(gameSize: gameSize, whichplayer: PlayerColor.bluePlayer));
     add(redplayer);
