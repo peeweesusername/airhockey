@@ -12,7 +12,7 @@ import 'package:air_hockey/playerpaddle.dart';
 const double puckRadius = 1.5/myZoomFactor;
 const double paddleRadius = 3.5/myZoomFactor;
 
-const int winningScore = 3;
+const int winningScore = 15;
 
 class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
   //Needed to eliminate gravity vector
