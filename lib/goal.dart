@@ -19,12 +19,10 @@ class Goal extends BodyComponent {
     setColor(Colors.red);
     if (whichplayer == PlayerColor.redPlayer)
     {
-      //TODO: place slighty beyond rink wall
       position = Vector2(gameSize.x/2, gameSize.y+goalSetBack);
     }
     else
     {
-      //TODO: place slighty beyond rink wall
       position = Vector2(gameSize.x/2, -goalSetBack);
     }
     final shape = PolygonShape ();
