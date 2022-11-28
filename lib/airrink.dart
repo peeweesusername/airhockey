@@ -9,9 +9,10 @@ class AirRinkLeftSide extends BodyComponent {
   @override
   Body createBody() {
     //Allow for gap in rink wall for goal
-    final indices = <Vector2>[Vector2((gameSize.x-goalWidth)/2,0),
+    final indices = <Vector2>[Vector2((gameSize.x/2)-goalWidth,0),
       Vector2(0,0), Vector2(0, gameSize.y),
-      Vector2((gameSize.x-goalWidth)/2, gameSize.y)];
+      Vector2((gameSize.x/2)-goalWidth, gameSize.y)];
+
     final shape = ChainShape();
     shape.createChain(indices);
     final fixtureDef = FixtureDef(shape, density: 1.0, restitution: 0.7, friction: 0.2);
@@ -28,10 +29,10 @@ class AirRinkRightSide extends BodyComponent {
   @override
   Body createBody() {
     //Allow for gap in rink wall for goal
-    final indices = <Vector2>[Vector2((gameSize.x+goalWidth)/2,0),
+    final indices = <Vector2>[Vector2((gameSize.x/2)+goalWidth,0),
       Vector2(gameSize.x,0),
       Vector2(gameSize.x, gameSize.y),
-      Vector2((gameSize.x+goalWidth)/2, gameSize.y)];
+      Vector2((gameSize.x/2)+goalWidth, gameSize.y)];
     final shape = ChainShape();
     shape.createChain(indices);
     final fixtureDef = FixtureDef(shape, density: 1.0, restitution: 0.7, friction: 0.2);
