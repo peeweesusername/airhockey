@@ -15,7 +15,7 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
   late  int _playerRedScore;
   late  int _playerBlueScore;
 
-  void PlayreScored(PlayerColor whichplayer) {
+  void PlayerScored(PlayerColor whichplayer) {
     setState(() {
       if (whichplayer == PlayerColor.redPlayer) {
         myAirHockeyGame.whoScored = PlayerColor.redPlayer;
@@ -46,7 +46,7 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
     myAirHockeyGame = AirHockeyGame();
     myAirHockeyGame.paused = false;
     myAirHockeyGame.whoScored = PlayerColor.noPlayer;
-    myAirHockeyGame.PlayreScored = PlayreScored;
+    myAirHockeyGame.PlayerScored = PlayerScored;
     myAirHockeyGame.NewGame = NewGame;
   }
 

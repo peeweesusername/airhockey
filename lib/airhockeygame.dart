@@ -1,5 +1,6 @@
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:air_hockey/globals.dart';
 import 'package:air_hockey/goal.dart';
@@ -27,7 +28,7 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
   late PlayerPaddle redplayer;
   late PlayerPaddle blueplayer;
   late ThePuck thePuck;
-  late Function(PlayerColor) PlayreScored;
+  late Function(PlayerColor) PlayerScored;
   late Function() NewGame;
 
   @override
@@ -48,6 +49,8 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
         radius: paddleRadius,
         linearVelocity: Vector2.zero(),
         whichplayer: PlayerColor.bluePlayer);
+    await FlameAudio.audioCache.load('charge.mp3');
+    await FlameAudio.audioCache.load('score_air_horn.mp3');
     add(AirRinkLeftSide(gameSize: gameSize));
     add(AirRinkRightSide(gameSize: gameSize));
     add(Goal(gameSize: gameSize, whichplayer: PlayerColor.redPlayer));
@@ -80,6 +83,8 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
     this.redscore = redscore;
     this.bluescore = bluescore;
 
+    FlameAudio.play('score_air_horn.mp3');
+
     if (this.redscore == winningScore) {
       winner(PlayerColor.redPlayer);
     }
@@ -102,6 +107,7 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
   }
 
   Future<void> puckDrop() async {
+    FlameAudio.play('charge.mp3');
     thePuck = ThePuck(position: Vector2(gameSize.x / 100, gameSize.y / 2),
         radius: puckRadius);
     await add(thePuck);
