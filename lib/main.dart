@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 import 'package:air_hockey/airHockeyStatefull.dart';
 
 //TODO:
-//4) Sounds: puck drop, goal and winner
 //5) Limit puck speed.
 
 void main() async {
