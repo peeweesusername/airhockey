@@ -6,7 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:air_hockey/airHockeyStatefull.dart';
 
 //TODO:
-//5) Limit puck speed.
+//1) Fix assert - if both paddles are not dragged prior to first score:
+//'package:forge2d/src/dynamics/world.dart': Failed assertion: line 160 pos 12: '!isLocked': is not true.
+//2) Limit puck speed.
 
 void main() async {
   //Make sure flame is ready before we launch our game

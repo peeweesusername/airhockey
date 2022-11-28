@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame_audio/flame_audio.dart';
@@ -108,10 +109,20 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
 
   Future<void> puckDrop() async {
     FlameAudio.play('charge.mp3');
-    thePuck = ThePuck(position: Vector2(gameSize.x / 100, gameSize.y / 2),
-        radius: puckRadius);
+    Vector2 droppoint;
+    double impulseX;
+    double impulseY = 0.0;
+    Random random = Random();
+    if (random.nextBool()) {
+      droppoint = Vector2(gameSize.x / 100, gameSize.y / 2);
+    } else {
+      droppoint = Vector2(gameSize.x, gameSize.y / 2);
+    }
+    impulseX = 0.01;
+    impulseY = (random.nextDouble()-0.5)*0.02;
+    thePuck = ThePuck(position: droppoint, radius: puckRadius);
     await add(thePuck);
-    thePuck.body.applyLinearImpulse(Vector2(0.01, 0));
+    thePuck.body.applyLinearImpulse(Vector2(impulseX, impulseY));
   }
 
   @override
