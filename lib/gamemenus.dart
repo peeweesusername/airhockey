@@ -17,13 +17,13 @@ Widget pauseMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
                   game.overlays.remove('PauseMenu');
                   game.resumeEngine();
                 },
-                child: const Text('Keep Playing', style: TextStyle(fontSize: 24, color: Colors.white))),
+                child: const Text('Keep Playing', style: TextStyle(fontSize: 24, color: Colors.black))),
             const Text('', style: TextStyle(fontSize: 24)),
             GestureDetector(
                 onTap: (){
                   SystemNavigator.pop();
                 },
-                child: const Text('Exit Game', style: TextStyle(fontSize: 24, color: Colors.white))),
+                child: const Text('Exit Game', style: TextStyle(fontSize: 24, color: Colors.black))),
           ],
         ),
       ),
@@ -40,9 +40,9 @@ Widget faceoffMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
       child:  Center(
         child: Column (
           children: [
-            Text('Red Team: '  + game.redscore.toString(), style: TextStyle(fontSize: 24, color: Colors.white)),
+            Text('Red Team: '  + game.redscore.toString(), style: TextStyle(fontSize: 24, color: Colors.black)),
             const Text('', style: TextStyle(fontSize: 12)),
-            Text('Blue Team: '  + game.bluescore.toString(), style: TextStyle(fontSize: 24, color: Colors.white)),
+            Text('Blue Team: '  + game.bluescore.toString(), style: TextStyle(fontSize: 24, color: Colors.black)),
             const Text('', style: TextStyle(fontSize: 24)),
             GestureDetector(
                 onTap: (){
@@ -50,13 +50,13 @@ Widget faceoffMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
                   game.resumeEngine();
                   game.puckDrop();
                 },
-                child: const Text('Puck Drop', style: TextStyle(fontSize: 24, color: Colors.white))),
+                child: const Text('Puck Drop', style: TextStyle(fontSize: 24, color: Colors.black))),
             const Text('', style: TextStyle(fontSize: 12)),
             GestureDetector(
                 onTap: (){
                   SystemNavigator.pop();
                 },
-                child: const Text('Exit Game', style: TextStyle(fontSize: 24, color: Colors.white))),
+                child: const Text('Exit Game', style: TextStyle(fontSize: 24, color: Colors.black))),
           ],
         ),
       ),
@@ -67,10 +67,10 @@ Widget faceoffMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
 Widget winnerMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
   Text  winnerText;
   if (game.theWinner == PlayerColor.redPlayer) {
-    winnerText =  Text('Team Red Wins!', style: TextStyle(fontSize: 24, color: Colors.white));
+    winnerText =  Text('Team Red Wins!', style: TextStyle(fontSize: 24, color: Colors.black));
   }
   else {
-    winnerText = Text('Team Blue Wins!', style: TextStyle(fontSize: 24, color: Colors.white));
+    winnerText = Text('Team Blue Wins!', style: TextStyle(fontSize: 24, color: Colors.black));
   }
   return Center(
     child: Container(
@@ -88,13 +88,13 @@ Widget winnerMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
                   game.resumeEngine();
                   game.NewGame();
                 },
-                child: const Text('New Game', style: TextStyle(fontSize: 24, color: Colors.white))),
+                child: const Text('New Game', style: TextStyle(fontSize: 24, color: Colors.black))),
             const Text('', style: TextStyle(fontSize: 12)),
             GestureDetector(
                 onTap: (){
                   SystemNavigator.pop();
                 },
-                child: const Text('Exit Game', style: TextStyle(fontSize: 24, color: Colors.white))),
+                child: const Text('Exit Game', style: TextStyle(fontSize: 24, color: Colors.black))),
           ],
         ),
       ),

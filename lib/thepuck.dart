@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart' hide Draggable;
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
@@ -12,6 +13,7 @@ class ThePuck extends BodyComponent with Draggable {
 
   @override
   Body createBody() {
+    setColor(Colors.black);
     final shape = CircleShape()..radius = radius;
     final mycontact = puckContactCallback(thePuck: this);
     final fixtureDef = FixtureDef(shape, density: 0.1, restitution: 0.3, friction: 0.1);
