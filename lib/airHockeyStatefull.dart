@@ -45,6 +45,7 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
     _playerBlueScore = 0;
     myAirHockeyGame = AirHockeyGame();
     myAirHockeyGame.paused = false;
+    myAirHockeyGame.whoScored = PlayerColor.noPlayer;
     myAirHockeyGame.PlayreScored = PlayreScored;
     myAirHockeyGame.NewGame = NewGame;
   }
