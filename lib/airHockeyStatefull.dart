@@ -57,15 +57,6 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[Container(
             constraints: BoxConstraints.expand(width: x, height: y),
-            //TODO: this no working, background image is black
-            //Suspect due to default background of game is black.
-            //Try the backgroundBuilder below.
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/air_hockey_rink.png'),
-                fit: BoxFit.cover,
-                ),
-              ),
             child: GameWidget<AirHockeyGame>(
               game: myAirHockeyGame,
               overlayBuilderMap: const{
@@ -73,8 +64,14 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
                 'FaceoffMenu': faceoffMenuBuilder,
                 'WinnerMenu': winnerMenuBuilder,
               },
-              //TODO: figure out how to use this to add rink background image
-              //backgroundBuilder: ,
+              backgroundBuilder: (context) => Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/air_hockey_rink.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
             ),
           ),
           ],
