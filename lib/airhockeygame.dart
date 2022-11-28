@@ -67,6 +67,7 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
   void restartGame() {
     redscore = 0;
     bluescore = 0;
+    whoScored = PlayerColor.noPlayer;
     paddlesReset();
     overlays.add('FaceoffMenu');
   }

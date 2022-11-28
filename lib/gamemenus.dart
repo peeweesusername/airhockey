@@ -6,11 +6,10 @@ import 'package:air_hockey/airhockeygame.dart';
 Widget pauseMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
   return Center(
     child: Container(
-      width: 250,
-      height: 250,
       color: Colors.transparent,
       child:  Center(
         child: Column (
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GestureDetector(
                 onTap: (){
@@ -34,27 +33,24 @@ Widget pauseMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
 Widget faceoffMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
   Text  whoScoredText;
   if (game.whoScored == PlayerColor.redPlayer) {
-    whoScoredText =  Text('Team Red Scores!', style: TextStyle(fontSize: 24, color: Colors.black));
-  }
-  else if (game.whoScored == PlayerColor.bluePlayer) {
-    whoScoredText = Text('Team Blue Scores!', style: TextStyle(fontSize: 24, color: Colors.black));
+    whoScoredText =  const Text('Team Red Scores!\n', style: TextStyle(fontSize: 24, color: Colors.black));
   }
   else {
-    whoScoredText = Text("Let's Rock 'n' Roll!", style: TextStyle(fontSize: 24, color: Colors.black));
+    whoScoredText = const Text('Team Blue Scores!\n', style: TextStyle(fontSize: 24, color: Colors.black));
   }
+
   return Center(
     child: Container(
-      width: 250,
-      height: 250,
       color: Colors.transparent,
       child:  Center(
         child: Column (
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            whoScoredText,
-            const Text('', style: TextStyle(fontSize: 24)),
-            Text('Red Team: '  + game.redscore.toString(), style: TextStyle(fontSize: 24, color: Colors.black)),
+            if (game.whoScored != PlayerColor.noPlayer)
+              whoScoredText,
+            Text('Red Team: ${game.redscore}', style: const TextStyle(fontSize: 24, color: Colors.black)),
             const Text('', style: TextStyle(fontSize: 12)),
-            Text('Blue Team: '  + game.bluescore.toString(), style: TextStyle(fontSize: 24, color: Colors.black)),
+            Text('Blue Team: ${game.bluescore}', style: const TextStyle(fontSize: 24, color: Colors.black)),
             const Text('', style: TextStyle(fontSize: 24)),
             GestureDetector(
                 onTap: (){
@@ -79,18 +75,17 @@ Widget faceoffMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
 Widget winnerMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
   Text  winnerText;
   if (game.theWinner == PlayerColor.redPlayer) {
-    winnerText =  Text('Team Red Wins!', style: TextStyle(fontSize: 24, color: Colors.black));
+    winnerText =  const Text('Team Red Wins!', style: TextStyle(fontSize: 24, color: Colors.black));
   }
   else {
-    winnerText = Text('Team Blue Wins!', style: TextStyle(fontSize: 24, color: Colors.black));
+    winnerText = const Text('Team Blue Wins!', style: TextStyle(fontSize: 24, color: Colors.black));
   }
   return Center(
     child: Container(
-      width: 250,
-      height: 250,
       color: Colors.transparent,
       child:  Center(
         child: Column (
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             winnerText,
             const Text('', style: TextStyle(fontSize: 24)),
