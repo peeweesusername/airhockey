@@ -19,12 +19,13 @@ class AirHockeyGame extends Forge2DGame with HasDraggables, TapDetector {
   int redscore = 0;
   int bluescore = 0;
   PlayerColor theWinner = PlayerColor.noPlayer;
+  PlayerColor whoScored = PlayerColor.noPlayer;
+  Vector2 redHomePosition = Vector2.zero();
+  Vector2 blueHomePosition = Vector2.zero();
   late Body gameBody;
   late Vector2 gameSize;
   late PlayerPaddle redplayer;
   late PlayerPaddle blueplayer;
-  Vector2 redHomePosition = Vector2.zero();
-  Vector2 blueHomePosition = Vector2.zero();
   late ThePuck thePuck;
   late Function(PlayerColor) PlayreScored;
   late Function() NewGame;

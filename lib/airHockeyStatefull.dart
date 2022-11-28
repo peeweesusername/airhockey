@@ -18,9 +18,11 @@ class _AirHockeyGameStatefull extends State<AirHockeyGameStatefull> {
   void PlayreScored(PlayerColor whichplayer) {
     setState(() {
       if (whichplayer == PlayerColor.redPlayer) {
+        myAirHockeyGame.whoScored = PlayerColor.redPlayer;
         _playerRedScore++;
       }
       else {
+        myAirHockeyGame.whoScored = PlayerColor.bluePlayer;
         _playerBlueScore++;
       }
       myAirHockeyGame.removePuck();

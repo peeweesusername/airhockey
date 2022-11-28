@@ -32,6 +32,16 @@ Widget pauseMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
 }
 
 Widget faceoffMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
+  Text  whoScoredText;
+  if (game.whoScored == PlayerColor.redPlayer) {
+    whoScoredText =  Text('Team Red Scores!', style: TextStyle(fontSize: 24, color: Colors.black));
+  }
+  else if (game.whoScored == PlayerColor.bluePlayer) {
+    whoScoredText = Text('Team Blue Scores!', style: TextStyle(fontSize: 24, color: Colors.black));
+  }
+  else {
+    whoScoredText = Text("Let's Rock 'n' Roll!", style: TextStyle(fontSize: 24, color: Colors.black));
+  }
   return Center(
     child: Container(
       width: 250,
@@ -40,6 +50,8 @@ Widget faceoffMenuBuilder(BuildContext buildContext, AirHockeyGame game) {
       child:  Center(
         child: Column (
           children: [
+            whoScoredText,
+            const Text('', style: TextStyle(fontSize: 24)),
             Text('Red Team: '  + game.redscore.toString(), style: TextStyle(fontSize: 24, color: Colors.black)),
             const Text('', style: TextStyle(fontSize: 12)),
             Text('Blue Team: '  + game.bluescore.toString(), style: TextStyle(fontSize: 24, color: Colors.black)),
